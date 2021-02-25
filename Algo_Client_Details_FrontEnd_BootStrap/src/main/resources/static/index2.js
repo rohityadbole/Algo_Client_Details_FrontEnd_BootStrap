@@ -65,38 +65,15 @@ function getToken(username, password) {
 			    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 			  },
 		  success: function(msg){   
-		        if(JSON.parse(JSON.stringify(msg)).is_tfa_enabled=="Y") {
-		        	
-		        	var email_two_fa_url = "http://localhost:8098/users/"+JSON.parse(JSON.stringify(msg)).id
-	        		+"/emails/"+JSON.parse(JSON.stringify(msg)).userName+"/2fa";
-		        	
-		        	var mobile_two_fa_url = "http://localhost:8098/users/"+JSON.parse(JSON.stringify(msg)).id
-	        		+"/mobilenumbers/"+JSON.parse(JSON.stringify(msg)).mobile+"/2fa";
-		        	
-		        	var verify_2fa_url = "http://localhost:8098/users/"+JSON.parse(JSON.stringify(msg)).id
-	        		+"/codes/";
-		        
-		        	sessionStorage.setItem("email_two_fa_url",email_two_fa_url);
-		        	sessionStorage.setItem("mobile_two_fa_url",mobile_two_fa_url);
-		        	sessionStorage.setItem("verify_2fa_url",verify_2fa_url);
-		        	
-		        	sessionStorage.setItem("access_token", JSON.parse(JSON.stringify(msg)).access_token);
-		        	sessionStorage.setItem("refresh_token", JSON.parse(JSON.stringify(msg)).refresh_token);
-				        
-				   if(JSON.parse(JSON.stringify(msg)).tfa_default_type=="SMS") {
-					   two_fa_url = mobile_two_fa_url;
-				   } else {
-					   two_fa_url = email_two_fa_url;
-				   }
-		        	
-		        	send2facode(two_fa_url, function() {
-		        		$("#myModal").modal('show');
-		        	});
-		        }else{
-		        	localStorage.setItem("access_token", JSON.parse(JSON.stringify(msg)).access_token);
+
+		        	//sessionStorage.setItem("access_token", JSON.parse(JSON.stringify(msg)).access_token);
+		        	//sessionStorage.setItem("refresh_token", JSON.parse(JSON.stringify(msg)).refresh_token);
+		        	//window.location.reload("permissions.html");
+			  		localStorage.setItem("access_token", JSON.parse(JSON.stringify(msg)).access_token);
 			  		localStorage.setItem("refresh_token", JSON.parse(JSON.stringify(msg)).refresh_token);
 			  		window.location.reload("permissions.html");
-		        }
+		        	//window.location.href="permissions.html";
+				  
 		  },
 		  error: function(XMLHttpRequest, textStatus, errorThrown) {
 		     $(".alert-danger").show();
