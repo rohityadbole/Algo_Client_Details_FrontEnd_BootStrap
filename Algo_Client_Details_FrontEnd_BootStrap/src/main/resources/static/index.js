@@ -61,7 +61,7 @@ function getToken(username, password) {
 		  url: "http://localhost:8097/oauth/token",
 		  data: "username="+username+"&password="+password+"&grant_type=password",
 		  beforeSend: function(request) {
-			    request.setRequestHeader("Authorization", "Basic "+btoa("talk2amareswaran:talk2amareswaran@123"));
+			    request.setRequestHeader("Authorization", "Basic "+btoa("clientId:password"));
 			    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 			  },
 		  success: function(msg){   
